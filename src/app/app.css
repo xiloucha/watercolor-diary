@@ -1,0 +1,924 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  
+  :host {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  
+  body {
+    margin: 0;
+  }
+  
+  
+  button,
+  textarea {
+    font-family:
+      Georgia,
+      'Times New Roman',
+      serif;
+  }
+  
+  
+  .app {
+    width: 100%;
+    min-height: 100vh;
+  
+    color: #555;
+  
+    font-family:
+      Georgia,
+      'Times New Roman',
+      serif;
+  }
+  
+  
+  /* =========================
+     START
+  ========================= */
+  
+  .start-screen {
+    width: 100vw;
+    min-height: 100vh;
+  
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+  
+    text-align: center;
+  
+    background: #d4d4d4;
+  }
+  
+  
+  .start-content {
+    animation:
+      startAppear
+      1s
+      ease
+      both;
+  }
+  
+  
+  @keyframes startAppear {
+  
+    from {
+      opacity: 0;
+  
+      transform:
+        translateY(10px);
+    }
+  
+    to {
+      opacity: 1;
+  
+      transform:
+        translateY(0);
+    }
+  
+  }
+  
+  
+  .small-title {
+    margin: 0;
+  
+    font-size: 10px;
+  
+    letter-spacing:
+      0.25em;
+  
+    opacity: 0.5;
+  }
+  
+  
+  .start-screen h1 {
+    margin:
+      12px 0 0;
+  
+    font-size:
+      clamp(
+        27px,
+        7vw,
+        38px
+      );
+  
+    font-weight:
+      normal;
+  
+    letter-spacing:
+      0.12em;
+  }
+  
+  
+  .description {
+    margin:
+      14px 0 32px;
+  
+    font-size: 12px;
+  
+    opacity: 0.55;
+  }
+  
+  
+  .start-button {
+    padding:
+      12px 34px;
+  
+    border:
+      1px solid
+      rgba(
+        70,
+        70,
+        70,
+        0.35
+      );
+  
+    border-radius:
+      30px;
+  
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.35
+      );
+  
+    color: #555;
+  
+    font-size: 13px;
+  
+    letter-spacing:
+      0.12em;
+  
+    cursor: pointer;
+  }
+  
+  
+  /* =========================
+     DIARY
+  ========================= */
+  
+  .diary-screen {
+    width: 100%;
+  
+    min-height: 100vh;
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+    padding:
+      18px 12px 30px;
+  
+    background:
+      #eeeae2;
+  }
+  
+  
+  .header {
+    width:
+      min(
+        500px,
+        94vw
+      );
+  
+    margin-bottom:
+      10px;
+  }
+  
+  
+  .header-top {
+    display: grid;
+  
+    grid-template-columns:
+      35px 1fr 35px;
+  
+    align-items: center;
+  
+    text-align: center;
+  }
+  
+  
+  .header h1 {
+    margin:
+      5px 0 2px;
+  
+    font-size: 22px;
+  
+    font-weight:
+      normal;
+  
+    letter-spacing:
+      0.12em;
+  }
+  
+  
+  .date {
+    font-size: 11px;
+  
+    opacity: 0.45;
+  }
+  
+  
+  .calendar-icon {
+    width: 32px;
+    height: 32px;
+  
+    padding: 0;
+  
+    border:
+      1px solid
+      rgba(
+        80,
+        70,
+        60,
+        0.2
+      );
+  
+    border-radius: 50%;
+  
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.4
+      );
+  
+    color: #666;
+  
+    font-size: 8px;
+  
+    cursor: pointer;
+  }
+  
+  
+  .diary-main {
+    width:
+      min(
+        500px,
+        94vw
+      );
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  }
+  
+  
+  /* =========================
+     PAPER
+  ========================= */
+  
+  .paper {
+    position: relative;
+  
+    width: 100%;
+  
+    aspect-ratio:
+      1 / 1;
+  
+    overflow: hidden;
+  
+    background: #faf7f0;
+  
+    box-shadow:
+      0 10px 25px
+      rgba(
+        60,
+        50,
+        40,
+        0.1
+      );
+  }
+  
+  
+  /* =========================
+     WATERCOLOR IMAGE
+  ========================= */
+  
+  /*
+    ここではCSSのmaskを使わない。
+  
+    Canvasで作った完成画像を
+    そのまま表示する。
+  
+    これによって、
+  
+    ・制作中
+    ・SAVE後
+    ・カレンダー
+  
+    すべて同じ画像になる。
+  */
+  
+  .watercolor-image {
+    position: absolute;
+  
+    inset: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: block;
+  
+    object-fit: cover;
+  
+    z-index: 2;
+  
+    pointer-events: none;
+  }
+  
+  
+  /* =========================
+     PAPER TEXTURE
+  ========================= */
+  
+  .paper-texture {
+    position: absolute;
+  
+    inset: 0;
+  
+    z-index: 5;
+  
+    pointer-events: none;
+  
+    opacity: 0.18;
+  
+    background:
+      repeating-linear-gradient(
+        0deg,
+  
+        rgba(
+          100,
+          90,
+          80,
+          0.025
+        )
+        0px,
+  
+        rgba(
+          100,
+          90,
+          80,
+          0.025
+        )
+        1px,
+  
+        transparent
+        1px,
+  
+        transparent
+        4px
+      );
+  }
+  
+  
+  .paper-message {
+    position: absolute;
+  
+    inset: 0;
+  
+    z-index: 10;
+  
+    display: flex;
+  
+    justify-content: center;
+  
+    align-items: center;
+  
+    text-align: center;
+  
+    line-height: 2;
+  
+    font-size: 13px;
+  
+    letter-spacing:
+      0.1em;
+  
+    color:
+      rgba(
+        80,
+        70,
+        60,
+        0.35
+      );
+  
+    pointer-events: none;
+  }
+  
+  
+  /* =========================
+     HISTORY
+  ========================= */
+  
+  .paint-history {
+    width: 100%;
+  
+    min-height: 20px;
+  
+    display: flex;
+  
+    flex-wrap: wrap;
+  
+    justify-content: center;
+  
+    gap: 5px;
+  
+    margin-top: 7px;
+  }
+  
+  
+  .history-dot {
+    width: 11px;
+    height: 11px;
+  
+    border-radius: 50%;
+  
+    opacity: 0.75;
+  }
+  
+  
+  /* =========================
+     PALETTE
+  ========================= */
+  
+  .palette {
+    display: grid;
+  
+    grid-template-columns:
+      repeat(
+        10,
+        28px
+      );
+  
+    gap: 6px;
+  
+    justify-content: center;
+  
+    margin-top: 10px;
+  }
+  
+  
+  .color-button {
+    width: 28px;
+    height: 28px;
+  
+    padding: 0;
+  
+    border: none;
+  
+    border-radius: 50%;
+  
+    cursor: pointer;
+  
+    box-shadow:
+      0 2px 5px
+      rgba(
+        0,
+        0,
+        0,
+        0.12
+      );
+  
+    transition:
+      transform
+      0.12s
+      ease;
+  }
+  
+  
+  .color-button:active {
+    transform:
+      scale(0.9);
+  }
+  
+  
+  .palette-help {
+    margin:
+      7px 0 0;
+  
+    font-size: 10px;
+  
+    opacity: 0.45;
+  
+    text-align: center;
+  }
+  
+  
+  /* =========================
+     MEMO
+  ========================= */
+  
+  .memo-area {
+    width: 100%;
+  
+    margin-top: 14px;
+  }
+  
+  
+  .memo-area label {
+    display: block;
+  
+    margin-bottom: 5px;
+  
+    font-size: 10px;
+  
+    letter-spacing:
+      0.08em;
+  
+    opacity: 0.6;
+  }
+  
+  
+  .memo-area textarea {
+    width: 100%;
+  
+    min-height: 62px;
+  
+    padding: 9px;
+  
+    resize: vertical;
+  
+    border:
+      1px solid
+      rgba(
+        80,
+        70,
+        60,
+        0.14
+      );
+  
+    border-radius: 5px;
+  
+    outline: none;
+  
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.45
+      );
+  
+    color: #555;
+  
+    font-size: 12px;
+  
+    line-height: 1.7;
+  }
+  
+  
+  /* =========================
+     ACTIONS
+  ========================= */
+  
+  .actions {
+    display: flex;
+  
+    justify-content: center;
+  
+    gap: 8px;
+  
+    margin-top: 10px;
+  }
+  
+  
+  .actions button,
+  .back-button {
+    padding:
+      8px 17px;
+  
+    border-radius:
+      25px;
+  
+    font-size: 10px;
+  
+    letter-spacing:
+      0.08em;
+  
+    cursor: pointer;
+  }
+  
+  
+  .secondary-button,
+  .back-button {
+    border:
+      1px solid
+      rgba(
+        80,
+        70,
+        60,
+        0.23
+      );
+  
+    background:
+      transparent;
+  
+    color: #666;
+  }
+  
+  
+  /* =========================
+     CALENDAR
+  ========================= */
+  
+  .calendar-screen {
+    width: 100%;
+  
+    min-height: 100vh;
+  
+    padding:
+      22px 10px 30px;
+  
+    background:
+      #eeeae2;
+  }
+  
+  
+  .calendar-header {
+    width:
+      min(
+        520px,
+        96vw
+      );
+  
+    margin:
+      0 auto 18px;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    justify-content:
+      space-between;
+  
+    text-align: center;
+  }
+  
+  
+  .calendar-header h1 {
+    margin:
+      5px 0 0;
+  
+    font-size: 21px;
+  
+    font-weight:
+      normal;
+  }
+  
+  
+  .month-button {
+    width: 34px;
+    height: 34px;
+  
+    border:
+      1px solid
+      rgba(
+        80,
+        70,
+        60,
+        0.18
+      );
+  
+    border-radius: 50%;
+  
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.4
+      );
+  
+    color: #666;
+  
+    font-size: 23px;
+  
+    line-height: 1;
+  
+    cursor: pointer;
+  }
+  
+  
+  /* =========================
+     CALENDAR GRID
+  ========================= */
+  
+  .calendar {
+    width:
+      min(
+        520px,
+        96vw
+      );
+  
+    margin:
+      0 auto;
+  
+    display: grid;
+  
+    grid-template-columns:
+      repeat(
+        7,
+        1fr
+      );
+  
+    gap: 5px;
+  }
+  
+  
+  .weekday {
+    height: 20px;
+  
+    display: flex;
+  
+    justify-content: center;
+  
+    align-items: center;
+  
+    font-size: 9px;
+  
+    opacity: 0.42;
+  }
+  
+  
+  .calendar-empty {
+    aspect-ratio:
+      1 / 1;
+  }
+  
+  
+  .calendar-day {
+    position: relative;
+  
+    aspect-ratio:
+      1 / 1;
+  
+    padding: 0;
+  
+    overflow: hidden;
+  
+    border:
+      1px solid
+      rgba(
+        80,
+        70,
+        60,
+        0.08
+      );
+  
+    border-radius: 5px;
+  
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.35
+      );
+  
+    cursor: pointer;
+  }
+  
+  
+  .calendar-day.has-entry {
+    border-color:
+      rgba(
+        80,
+        70,
+        60,
+        0.15
+      );
+  }
+  
+  
+  .day-number {
+    position: absolute;
+  
+    top: 4px;
+  
+    left: 5px;
+  
+    z-index: 5;
+  
+    font-size: 9px;
+  
+    color:
+      rgba(
+        70,
+        60,
+        50,
+        0.55
+      );
+  
+    text-shadow:
+      0 1px 2px
+      rgba(
+        255,
+        255,
+        255,
+        0.8
+      );
+  }
+  
+  
+  /* =========================
+     CALENDAR THUMBNAIL
+  ========================= */
+  
+  /*
+    保存されたJPEGを
+    そのまま縮小して表示。
+  
+    新しいグラデーションは作らない。
+  */
+  
+  .thumbnail-image {
+    position: absolute;
+  
+    inset: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: block;
+  
+    object-fit: cover;
+  
+    pointer-events: none;
+  }
+  
+  
+  /* =========================
+     BACK
+  ========================= */
+  
+  .back-button {
+    display: block;
+  
+    margin:
+      18px auto 0;
+  }
+  
+  
+  /* =========================
+     MOBILE
+  ========================= */
+  
+  @media (
+    max-width: 420px
+  ) {
+  
+    .palette {
+  
+      grid-template-columns:
+        repeat(
+          10,
+          26px
+        );
+  
+      gap: 5px;
+  
+    }
+  
+  
+    .color-button {
+  
+      width: 26px;
+      height: 26px;
+  
+    }
+  
+  
+    .diary-screen {
+  
+      padding:
+        14px 9px 24px;
+  
+    }
+  
+  
+    .header h1 {
+  
+      font-size: 20px;
+  
+    }
+  
+  
+    .calendar {
+  
+      gap: 4px;
+  
+    }
+  
+  }
