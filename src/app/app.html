@@ -103,6 +103,7 @@
           class="watercolor-image"
           [src]="previewImage"
           alt=""
+          (click)="onClickPreview($event)"
         >
 
 
@@ -203,7 +204,13 @@
           type="button"
         >
           SAVE
-        </button>
+        </button><button
+        class="secondary-button"
+        (click)="downloadCurrentEntry()"
+        type="button"
+      >
+        DOWNLOAD
+      </button>
 
         <button
           class="secondary-button"
@@ -346,3 +353,8 @@
   </section>
 
 </div>
+@if(ismarkon){
+<div #mark
+class="mark">
+</div>
+}

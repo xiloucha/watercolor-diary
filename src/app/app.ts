@@ -1047,7 +1047,30 @@ export class App {
       image;
 
   }
+  downloadCurrentEntry(): void {
+    fetch(this.previewImage)
+  .then(response => response.blob())
+  .then(blob => new File([blob], 'image.jpeg'))
+  .then(file => {
+    //fileはFileオブジェクト
+      // BlobやFileから一時的なURLを作成する
+      const url = URL.createObjectURL(file);
+    
+      // aタグを動的に作成する
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'watercolor.jpg'; // ダウンロード時のファイル名
+    
+      // DOMに一時追加してクリックイベントを発生させる
+      document.body.appendChild(link);
+      link.click();
+    
+      // 後処理（要素の削除とURLの解放）
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+  })
 
+  }
 
   /*
     ========================================
@@ -1575,5 +1598,9 @@ export class App {
     );
 
   }
+  ismarkon = false;
+ onClickPreview(event){
+this.ismarkon = true;
 
+}
 }
