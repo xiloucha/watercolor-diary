@@ -1,59 +1,73 @@
-# WatercolorDialy
+# Watercolor Diary
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
+A diary made of colors.
 
-## Development server
+There are days when words don't come easily.
 
-To start a local development server, run:
+Instead of writing down what happened,
+choose a color.
 
-```bash
-ng serve
-```
+A little blue.
+A little yellow.
+A color somewhere between the two.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Layer them together,
+and a quiet landscape begins to appear.
 
-## Code scaffolding
+This is not a diary that tells you what happened.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+It simply keeps a trace of how the day felt.
 
-```bash
-ng generate component component-name
-```
+The colors don't have to mean anything.
+They don't have to be beautiful.
+They don't have to make sense.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Just leave today's colors here.
 
-```bash
-ng generate --help
-```
+And tomorrow,
+add a few more.
 
-## Building
+Over time,
+the diary becomes a collection of days —
+not written in words,
+but painted in color.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+# 色集め帖
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+色でつくる、日記。
 
-## Running unit tests
+今日はどんな日だった？
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+うまく言葉にできない日もある。
 
-```bash
-ng test
-```
+そんな日は、
+色を選ぶ。
 
-## Running end-to-end tests
+少し青。
+少し黄色。
+そのあいだの、名前のない色。
 
-For end-to-end (e2e) testing, run:
+色を重ねていくと、
+いつの間にか小さな景色ができている。
 
-```bash
-ng e2e
-```
+これは、
+「今日何があったか」を記録する日記ではありません。
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+その日がどんなふうに感じられたのか。
+その痕跡を、色で残していく日記です。
 
-## Additional Resources
+色に意味を持たせなくてもいい。
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+きれいじゃなくてもいい。
+うまく説明できなくてもいい。
+
+ただ、今日の色を置いておく。
+
+そして明日、
+また少し色を集める。
+
+そうやって少しずつ、
+言葉ではなく色でできた
+自分だけの日記になっていきます。
