@@ -1599,7 +1599,7 @@ export class App {
 
   }
   ismarkon = false;
- onClickPreview(event){
+ onClickPreview(event: Event){
 this.ismarkon = true;
 
 }
